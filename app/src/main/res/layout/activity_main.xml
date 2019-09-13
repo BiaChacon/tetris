@@ -4,11 +4,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:gravity="center">
+    android:gravity="center|center_vertical"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-    <GridLayout
-        android:id="@+id/gridboard"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20sp"
+        android:layout_marginTop="30sp">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pontua_o"
+            android:textSize="32sp"
+            android:layout_gravity="left"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="32dp"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pr_xima"
+            android:textSize="32sp"
+            android:layout_gravity="right"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/pauseBt"
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
+            android:text="Button" />
+
+        <GridLayout
+            android:id="@+id/gridboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="60sp"
+            android:layout_marginLeft="5sp"
+            android:background="@android:color/background_dark">
+
+        </GridLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="50sp"
+        android:layout_marginHorizontal="20sp"
+        android:gravity="center"
+        >
+
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            android:layout_gravity="top"/>
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="right"
+            android:text="Button" />
+
+    </LinearLayout>
+
 </LinearLayout>

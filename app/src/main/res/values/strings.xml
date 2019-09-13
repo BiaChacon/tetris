@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GameTetris</string>
+    <string name="pontua_o">Pontos:</string>
+    <string name="pr_xima">Próxima:</string>
 </resources>
