@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:gravity="center|center_vertical"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/colorBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,39 +20,55 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
             android:text="@string/pontua_o"
-            android:textSize="32sp"
-            android:layout_gravity="left"/>
+            android:textColor="#FFFFFF"
+            android:textSize="24dp"
+            app:fontFamily="@font/orbitron_black" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-            android:textSize="32dp"/>
+            android:textColor="#FFFF"
+            android:textSize="24dp"
+            android:layout_marginLeft="5sp"
+            app:fontFamily="@font/orbitron_black" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:text="@string/pr_xima"
-            android:textSize="32sp"
-            android:layout_gravity="right"/>
+            android:textColor="#FFFFFF"
+            android:textSize="24dp"
+            app:fontFamily="@font/orbitron_black"
+            android:layout_marginLeft="50sp"/>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="60sp"
+                android:layout_marginLeft="5sp">
+            </GridLayout>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
 
-        <Button
+        <ImageButton
             android:id="@+id/pauseBt"
-            android:layout_width="60sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            app:srcCompat="@drawable/pause"
             android:layout_marginLeft="5sp"
-            android:layout_marginRight="5sp"
-            android:text="Button" />
+            android:background="@drawable/bt_background"/>
 
         <GridLayout
             android:id="@+id/gridboard"
@@ -59,8 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginRight="60sp"
-            android:layout_marginLeft="5sp"
-            android:background="@android:color/background_dark">
+            android:layout_marginLeft="5sp">
 
         </GridLayout>
 
@@ -68,40 +84,46 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100sp"
         android:orientation="horizontal"
-        android:layout_marginBottom="50sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10sp"
         android:layout_marginHorizontal="20sp"
         android:gravity="center"
         >
 
 
-        <Button
+        <ImageButton
             android:id="@+id/button4"
-            android:layout_width="60sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
-            android:layout_gravity="top"/>
+            android:layout_gravity="top"
+            app:srcCompat="@drawable/left"
+            android:background="@drawable/bt_background"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/button5"
-            android:layout_width="60sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            app:srcCompat="@drawable/down"
+            android:background="@drawable/bt_background"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/button6"
-            android:layout_width="60sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            app:srcCompat="@drawable/rigth"
+            android:layout_gravity="top"
+            android:background="@drawable/bt_background"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/button7"
-            android:layout_width="60sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_gravity="right"
-            android:text="Button" />
+            app:srcCompat="@drawable/rotate"
+            android:layout_gravity="top"
+            android:layout_marginLeft="50sp"
+            android:background="@drawable/bt_background"/>
 
     </LinearLayout>
 
