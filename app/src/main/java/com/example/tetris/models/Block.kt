@@ -1,4 +1,4 @@
-package br.ufrn.eaj.tads.gametetris.models
+package com.example.tetris
 
 abstract class Block(var x:Int, var y:Int){
 
@@ -12,6 +12,6 @@ abstract class Block(var x:Int, var y:Int){
     abstract fun moveGirar()
     abstract fun moveDown()
     abstract fun moveLeft()
-    abstract fun moveRigth()
+    abstract fun moveRight()
 
 }

@@ -1,4 +1,4 @@
-package br.ufrn.eaj.tads.gametetris.models
+package com.example.tetris
 
 class Ponto (var x:Int, var y:Int){
 
@@ -7,11 +7,11 @@ class Ponto (var x:Int, var y:Int){
     }
 
     fun moveLeft(){
-
+        y--
     }
 
-    fun moveRigth(){
-
+    fun moveRight(){
+        y++
     }
 
 }
