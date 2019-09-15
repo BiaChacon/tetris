@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.ufrn.eaj.tads.gametetris">
+    package="com.example.tetris">
 
     <application
         android:allowBackup="true"
@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.tetris.Main3Activity"></activity>
-        <activity android:name="com.example.tetris.Main2Activity" />
-        <activity android:name="com.example.tetris.InicioActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ResultActivity"></activity>
+        <activity android:name=".TabuleiroActivity" />
+        <activity android:name=".ConfigActivity" />
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

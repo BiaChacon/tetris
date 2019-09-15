@@ -1,8 +1,13 @@
 <resources>
-    <string name="app_name">Tetris</string>
+    <string name="app_name">TETRIS</string>
     <string name="pontua_o">Pontos:</string>
     <string name="pr_xima">Próxima:</string>
     <string name="novo_jogo">Novo jogo</string>
     <string name="continuar">Continuar</string>
     <string name="configurar">Configurar</string>
+    <string name="configura_s">Configuração</string>
+    <string name="dificuldade">Dificuldade:</string>
+    <string name="f_cil">Fácil</string>
+    <string name="normal">Normal</string>
+    <string name="dif_cil">Difícil</string>
 </resources>
