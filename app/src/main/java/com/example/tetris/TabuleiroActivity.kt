@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 
 class TabuleiroActivity : AppCompatActivity() {
 
+
     val LINHA = 22
     val COLUNA = 12
     var running = true
@@ -73,7 +74,7 @@ class TabuleiroActivity : AppCompatActivity() {
                     for (i in 0 until LINHA) {
                         for (j in 0 until COLUNA) {
                             if (board[i][j] == 0){
-                                boardView[i][j]!!.setImageResource(R.drawable.white)
+                                boardView[i][j]!!.setImageResource(R.drawable.branco)
                             }
                         }
                     }
@@ -85,7 +86,7 @@ class TabuleiroActivity : AppCompatActivity() {
                     //print peça
                     try {
                         fazerBlock()
-                    }catch (e:ArrayIndexOutOfBoundsException ) {
+                    }catch (e:ArrayIndexOutOfBoundsException) {
                         //se a peça passou das bordas eu vou parar o jogo
                         running = false
                         bordaOuLateral()
@@ -111,10 +112,10 @@ class TabuleiroActivity : AppCompatActivity() {
 
     fun fazerBlock(){
 
-        boardView[pt.pA.x][pt.pA.y]!!.setImageResource(R.drawable.green)
-        boardView[pt.pB.x][pt.pB.y]!!.setImageResource(R.drawable.green)
-        boardView[pt.pC.x][pt.pC.y]!!.setImageResource(R.drawable.green)
-        boardView[pt.pD.x][pt.pD.y]!!.setImageResource(R.drawable.green)
+        boardView[pt.pA.x][pt.pA.y]!!.setImageResource(R.drawable.roxo)
+        boardView[pt.pB.x][pt.pB.y]!!.setImageResource(R.drawable.roxo)
+        boardView[pt.pC.x][pt.pC.y]!!.setImageResource(R.drawable.roxo)
+        boardView[pt.pD.x][pt.pD.y]!!.setImageResource(R.drawable.roxo)
 
     }
 
