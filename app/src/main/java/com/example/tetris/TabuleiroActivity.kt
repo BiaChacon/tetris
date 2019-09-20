@@ -15,11 +15,9 @@ class TabuleiroActivity : AppCompatActivity() {
     var running = true
     var speed:Long = 300
 
-    var pt = Lblock(2,6)
+    var p = Lblock(2,6)
 
-    //val board = Array(LINHA, { IntArray(COLUNA) })
-
-    var board = Array(LINHA) {
+    var tabuleiro = Array(LINHA) {
         Array(COLUNA){0}
     }
 
@@ -44,22 +42,22 @@ class TabuleiroActivity : AppCompatActivity() {
         }
 
         leftBt.setOnClickListener {
-            if(!bateuEsquerda()){
-                pt.moveLeft()
+            if(!checarEsquerda()){
+                p.moveLeft()
             }
         }
 
         rightBt.setOnClickListener {
-            if(!bateuDireita()){
-                pt.moveRight()
+            if(!checarDireita()){
+                p.moveRight()
             }
         }
 
         downBt.setOnClickListener {
-            pt.moveDown()
+            p.moveDown()
         }
         rotateBt.setOnClickListener {
-            pt.moveGirar()
+            p.moveGirar()
         }
 
         gameRun()
@@ -73,14 +71,14 @@ class TabuleiroActivity : AppCompatActivity() {
                     //limpa tela
                     for (i in 0 until LINHA) {
                         for (j in 0 until COLUNA) {
-                            if (board[i][j] == 0){
-                                boardView[i][j]!!.setImageResource(R.drawable.branco)
+                            if (tabuleiro[i][j] == 0){
+                                boardView[i][j]!!.setImageResource(R.drawable.white)
                             }
                         }
                     }
                     //move peça atual
                     if(!bateuPeca()){
-                        pt.moveDown()
+                        p.moveDown()
                     }
 
                     //print peça
@@ -89,7 +87,7 @@ class TabuleiroActivity : AppCompatActivity() {
                     }catch (e:ArrayIndexOutOfBoundsException) {
                         //se a peça passou das bordas eu vou parar o jogo
                         running = false
-                        bordaOuLateral()
+                        verificarBateu()
                     }
 
                 }
@@ -98,12 +96,12 @@ class TabuleiroActivity : AppCompatActivity() {
     }
 
 
-    fun update(){
+    fun updateTabuleiro(){
 
-        board[pt.pA.x][pt.pA.y] =1
-        board[pt.pB.x][pt.pB.y] =1
-        board[pt.pC.x][pt.pC.y] =1
-        board[pt.pD.x][pt.pD.y] =1
+        tabuleiro[p.pA.x][p.pA.y] =1
+        tabuleiro[p.pB.x][p.pB.y] =1
+        tabuleiro[p.pC.x][p.pC.y] =1
+        tabuleiro[p.pD.x][p.pD.y] =1
 
         fazerBlock()
         newBlock()
@@ -112,23 +110,25 @@ class TabuleiroActivity : AppCompatActivity() {
 
     fun fazerBlock(){
 
-        boardView[pt.pA.x][pt.pA.y]!!.setImageResource(R.drawable.roxo)
-        boardView[pt.pB.x][pt.pB.y]!!.setImageResource(R.drawable.roxo)
-        boardView[pt.pC.x][pt.pC.y]!!.setImageResource(R.drawable.roxo)
-        boardView[pt.pD.x][pt.pD.y]!!.setImageResource(R.drawable.roxo)
+        boardView[p.pA.x][p.pA.y]!!.setImageResource(R.drawable.green)
+        boardView[p.pB.x][p.pB.y]!!.setImageResource(R.drawable.green)
+        boardView[p.pC.x][p.pC.y]!!.setImageResource(R.drawable.green)
+        boardView[p.pD.x][p.pD.y]!!.setImageResource(R.drawable.green)
 
     }
 
     fun newBlock(){
-        pt = Lblock(2,6)
+        p = Lblock(2,6)
     }
 
     fun bateuPeca():Boolean{
         try {
-            if((board[pt.pA.x+1][pt.pA.y] == 1) || (board[pt.pB.x+1][pt.pB.y] == 1)//bateu no final da peca
-                || (board[pt.pC.x+1][pt.pC.y] == 1) || (board[pt.pD.x+1][pt.pD.y] == 1)){
+            if((tabuleiro[p.pA.x+1][p.pA.y] == 1) ||
+                (tabuleiro[p.pB.x+1][p.pB.y] == 1) ||
+                (tabuleiro[p.pC.x+1][p.pC.y] == 1) ||
+                (tabuleiro[p.pD.x+1][p.pD.y] == 1)){
                 //bateuFinal()
-                update()
+                updateTabuleiro()
                 return true
             }
         }catch (e:ArrayIndexOutOfBoundsException){
@@ -137,38 +137,52 @@ class TabuleiroActivity : AppCompatActivity() {
         return false
     }
 
-    //bateu no final ou na lateral?
-    fun bordaOuLateral(){
-        if(pt.pA.x >= LINHA || pt.pB.x >= LINHA || pt.pC.x >= LINHA ||
-            pt.pD.x >= LINHA){
+    fun verificarBateu(){
+        if(p.pA.x >= LINHA ||
+            p.pB.x >= LINHA ||
+            p.pC.x >= LINHA ||
+            p.pD.x >= LINHA){
+
             bateuFinal()
+
         }else{
+
             bateuLateral()
+
         }
+
     }
 
     fun bateuFinal(){
-        pt.pA.x-=1
-        pt.pB.x-=1
-        pt.pC.x-=1
-        pt.pD.x-=1
-        update()
+        p.pA.x-=1
+        p.pB.x-=1
+        p.pC.x-=1
+        p.pD.x-=1
+        updateTabuleiro()
     }
 
-    //ver se bateu na direita ou esquerda
     fun bateuLateral(){
-        if(pt.pA.y >= COLUNA || pt.pB.y >= COLUNA || pt.pC.y >= COLUNA ||
-            pt.pD.y >= COLUNA){
-            pt.moveLeft()
+        if( p.pA.y >= COLUNA ||
+            p.pB.y >= COLUNA ||
+            p.pC.y >= COLUNA ||
+            p.pD.y >= COLUNA){
+
+            p.moveLeft()
+
         }else{
-            pt.moveRight()
+
+            p.moveRight()
+
         }
+
     }
 
-    fun bateuDireita():Boolean{
+    fun checarDireita():Boolean{
         try {
-            if((board[pt.pA.x][pt.pA.y+2] == 1) || (board[pt.pB.x][pt.pB.y+2] == 1)
-                || (board[pt.pC.x][pt.pC.y+2] == 1) || (board[pt.pD.x][pt.pD.y+2] == 1)) {//bateu no lado direito
+            if((tabuleiro[p.pA.x][p.pA.y+2] == 1) ||
+                (tabuleiro[p.pB.x][p.pB.y+2] == 1) ||
+                (tabuleiro[p.pC.x][p.pC.y+2] == 1) ||
+                (tabuleiro[p.pD.x][p.pD.y+2] == 1)) {
                 return true
             }
         }catch (e:ArrayIndexOutOfBoundsException){
@@ -177,10 +191,12 @@ class TabuleiroActivity : AppCompatActivity() {
         return false
     }
 
-    fun bateuEsquerda():Boolean{
+    fun checarEsquerda():Boolean{
         try {
-            if((board[pt.pA.x][pt.pA.y-1] == 1) || (board[pt.pB.x][pt.pB.y-1] == 1)
-                || (board[pt.pC.x][pt.pC.y-1] == 1) || (board[pt.pD.x][pt.pD.y-1] == 1)) {//bateu no lado esquerdo
+            if((tabuleiro[p.pA.x][p.pA.y-1] == 1) ||
+                (tabuleiro[p.pB.x][p.pB.y-1] == 1)
+                || (tabuleiro[p.pC.x][p.pC.y-1] == 1) ||
+                (tabuleiro[p.pD.x][p.pD.y-1] == 1)) {
                 return true
             }
         }catch (e:ArrayIndexOutOfBoundsException){
