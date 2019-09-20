@@ -16,7 +16,8 @@ class TabuleiroActivity : AppCompatActivity() {
     var running = true
     var speed:Long = 300
 
-    var p = Jblock(0,6)
+
+    var p = gerarPeca()
 
     var tabuleiro = Array(LINHA) {
         Array(COLUNA){0}
@@ -118,7 +119,28 @@ class TabuleiroActivity : AppCompatActivity() {
     }
 
     fun newBlock(){
-        p = Jblock(0,6)
+        p = gerarPeca()
+    }
+
+    fun gerarPeca():Block{
+
+        val random = (1..7).shuffled().first()
+
+        if(random == 1)
+            return Iblock(0,6)
+        else if (random == 2)
+            return Jblock(0,6)
+        else if(random == 3)
+            return Lblock(2,6)
+        else if(random == 4)
+            return Oblock(0,6)
+        else if (random == 5)
+            return Sblock(0,6)
+        else if (random == 6)
+            return Tblock(0,6)
+        else
+            return Zblock(0,6)
+
     }
 
     fun bateuPeca():Boolean{
