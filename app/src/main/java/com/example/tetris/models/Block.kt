@@ -1,4 +1,4 @@
-package com.example.tetris
+package com.example.tetris.models
 
 abstract class Block(var x:Int, var y:Int){
 

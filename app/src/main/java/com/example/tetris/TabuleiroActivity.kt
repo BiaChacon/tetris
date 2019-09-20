@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_tabuleiro.*
 import android.view.LayoutInflater
+import com.example.tetris.models.*
 
 class TabuleiroActivity : AppCompatActivity() {
 
@@ -15,7 +16,7 @@ class TabuleiroActivity : AppCompatActivity() {
     var running = true
     var speed:Long = 300
 
-    var p = Lblock(2,6)
+    var p = Jblock(0,6)
 
     var tabuleiro = Array(LINHA) {
         Array(COLUNA){0}
@@ -48,7 +49,7 @@ class TabuleiroActivity : AppCompatActivity() {
         }
 
         rightBt.setOnClickListener {
-            if(!checarDireita()){
+            if(checarDireita()){
                 p.moveRight()
             }
         }
@@ -86,7 +87,7 @@ class TabuleiroActivity : AppCompatActivity() {
                         fazerBlock()
                     }catch (e:ArrayIndexOutOfBoundsException) {
                         //se a peça passou das bordas eu vou parar o jogo
-                        running = false
+                        //running = false
                         verificarBateu()
                     }
 
@@ -94,7 +95,6 @@ class TabuleiroActivity : AppCompatActivity() {
             }
         }.start()
     }
-
 
     fun updateTabuleiro(){
 
@@ -118,7 +118,7 @@ class TabuleiroActivity : AppCompatActivity() {
     }
 
     fun newBlock(){
-        p = Lblock(2,6)
+        p = Jblock(0,6)
     }
 
     fun bateuPeca():Boolean{
@@ -127,12 +127,13 @@ class TabuleiroActivity : AppCompatActivity() {
                 (tabuleiro[p.pB.x+1][p.pB.y] == 1) ||
                 (tabuleiro[p.pC.x+1][p.pC.y] == 1) ||
                 (tabuleiro[p.pD.x+1][p.pD.y] == 1)){
-                //bateuFinal()
+
                 updateTabuleiro()
+                newBlock()
                 return true
             }
         }catch (e:ArrayIndexOutOfBoundsException){
-            Log.i("ERRO","Erro não importante")
+
         }
         return false
     }
@@ -179,10 +180,10 @@ class TabuleiroActivity : AppCompatActivity() {
 
     fun checarDireita():Boolean{
         try {
-            if((tabuleiro[p.pA.x][p.pA.y+2] == 1) ||
-                (tabuleiro[p.pB.x][p.pB.y+2] == 1) ||
-                (tabuleiro[p.pC.x][p.pC.y+2] == 1) ||
-                (tabuleiro[p.pD.x][p.pD.y+2] == 1)) {
+            if((tabuleiro[p.pA.x][p.pA.y+1] == 0) ||
+                (tabuleiro[p.pB.x][p.pB.y+1] == 0) ||
+                (tabuleiro[p.pC.x][p.pC.y+1] == 0) ||
+                (tabuleiro[p.pD.x][p.pD.y+1] == 0)) {
                 return true
             }
         }catch (e:ArrayIndexOutOfBoundsException){
@@ -194,8 +195,8 @@ class TabuleiroActivity : AppCompatActivity() {
     fun checarEsquerda():Boolean{
         try {
             if((tabuleiro[p.pA.x][p.pA.y-1] == 1) ||
-                (tabuleiro[p.pB.x][p.pB.y-1] == 1)
-                || (tabuleiro[p.pC.x][p.pC.y-1] == 1) ||
+                (tabuleiro[p.pB.x][p.pB.y-1] == 1) ||
+                (tabuleiro[p.pC.x][p.pC.y-1] == 1) ||
                 (tabuleiro[p.pD.x][p.pD.y-1] == 1)) {
                 return true
             }

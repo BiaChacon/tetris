@@ -1,4 +1,4 @@
-package com.example.tetris
+package com.example.tetris.models
 
 class Lblock(x:Int, y:Int):Block(x,y){
 

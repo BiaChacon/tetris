@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TETRIS</string>
+    <string name="app_name">Tetris</string>
     <string name="pontua_o">Pontos:</string>
     <string name="pr_xima">Próxima:</string>
     <string name="novo_jogo">Novo jogo</string>

@@ -1,11 +1,11 @@
-package com.example.tetris
+package com.example.tetris.models
 
 class Oblock(x:Int, y:Int):Block(x,y){
 
     init {
-        pB = Ponto(1,0)
-        pC = Ponto(0,-1)
-        pD = Ponto(1, -1)
+        pB = Ponto(x+1,y)
+        pC = Ponto(x,y+1)
+        pD = Ponto(x+1, y+1)
     }
 
     override fun moveDown() {

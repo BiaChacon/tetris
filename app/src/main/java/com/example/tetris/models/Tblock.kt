@@ -1,11 +1,11 @@
-package com.example.tetris
+package com.example.tetris.models
 
 class Tblock(x:Int, y:Int):Block(x,y){
 
     init {
-        pB = Ponto(-1, -1)
-        pC = Ponto(0,-1)
-        pD = Ponto(1,-1)
+        pB = Ponto(x+1, y-1)
+        pC = Ponto(x+1,y)
+        pD = Ponto(x+1,y+1)
     }
 
     override fun moveDown() {
@@ -16,7 +16,31 @@ class Tblock(x:Int, y:Int):Block(x,y){
     }
 
     override fun moveGirar() {
-
+        if (state){
+            //trocar ponto B
+            pB.x = pA.x-1
+            pB.y = pA.y-1
+            //trocar ponto C
+            pC.x = pA.x
+            pC.y = pA.y-1
+            //trocar ponto D
+            pD.x = pA.x+1
+            pD.y = pA.y-1
+            //mudar state para horizontal
+            state = false
+        }else{
+            //trocar ponto B
+            pB.x = pA.x+1
+            pB.y = pA.y-1
+            //trocar ponto C
+            pC.x = pA.x+1
+            pC.y = pA.y
+            //trocar ponto D
+            pD.x = pA.x+1
+            pD.y = pA.y+1
+            //mudar state para vertical
+            state = true
+        }
     }
 
     override fun moveLeft() {
