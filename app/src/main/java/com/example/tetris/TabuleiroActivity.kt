@@ -74,7 +74,7 @@ class TabuleiroActivity : AppCompatActivity() {
                     for (i in 0 until LINHA) {
                         for (j in 0 until COLUNA) {
                             if (tabuleiro[i][j] == 0){
-                                boardView[i][j]!!.setImageResource(R.drawable.white)
+                                boardView[i][j]!!.setImageResource(R.drawable.branco)
                             }
                         }
                     }
@@ -97,6 +97,10 @@ class TabuleiroActivity : AppCompatActivity() {
         }.start()
     }
 
+    fun verificarLinha(){
+
+    }
+
     fun updateTabuleiro(){
 
         tabuleiro[p.pA.x][p.pA.y] =1
@@ -111,10 +115,10 @@ class TabuleiroActivity : AppCompatActivity() {
 
     fun fazerBlock(){
 
-        boardView[p.pA.x][p.pA.y]!!.setImageResource(R.drawable.green)
-        boardView[p.pB.x][p.pB.y]!!.setImageResource(R.drawable.green)
-        boardView[p.pC.x][p.pC.y]!!.setImageResource(R.drawable.green)
-        boardView[p.pD.x][p.pD.y]!!.setImageResource(R.drawable.green)
+        boardView[p.pA.x][p.pA.y]!!.setImageResource(R.drawable.rosa)
+        boardView[p.pB.x][p.pB.y]!!.setImageResource(R.drawable.rosa)
+        boardView[p.pC.x][p.pC.y]!!.setImageResource(R.drawable.rosa)
+        boardView[p.pD.x][p.pD.y]!!.setImageResource(R.drawable.rosa)
 
     }
 
