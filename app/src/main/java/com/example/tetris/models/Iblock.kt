@@ -3,9 +3,9 @@ package com.example.tetris.models
 class Iblock(x:Int, y:Int): Block(x,y){
 
     init {
-        pB = Ponto(x,y+1)
-        pC = Ponto(x,y+2)
-        pD = Ponto(x, y+3)
+        pB = Ponto(x+1,y)
+        pC = Ponto(x+2,y)
+        pD = Ponto(x+3, y)
     }
 
     override fun moveDown() {
@@ -18,18 +18,6 @@ class Iblock(x:Int, y:Int): Block(x,y){
     override fun moveGirar() {
         if (state){
             //trocar ponto B
-            pB.x = pA.x+1
-            pB.y = pA.y
-            //trocar ponto C
-            pC.x = pA.x+2
-            pC.y = pA.y
-            //trocar ponto D
-            pD.x = pA.x+3
-            pD.y = pA.y
-            //mudar state para horizontal
-            state = false
-        }else{
-            //trocar ponto B
             pB.x = pA.x
             pB.y = pA.y+1
             //trocar ponto C
@@ -38,6 +26,18 @@ class Iblock(x:Int, y:Int): Block(x,y){
             //trocar ponto D
             pD.x = pA.x
             pD.y = pA.y+3
+            //mudar state para horizontal
+            state = false
+        }else{
+            //trocar ponto B
+            pB.x = pA.x+1
+            pB.y = pA.y
+            //trocar ponto C
+            pC.x = pA.x+2
+            pC.y = pA.y
+            //trocar ponto D
+            pD.x = pA.x+3
+            pD.y = pA.y
             //mudar state para vertical
             state = true
         }
