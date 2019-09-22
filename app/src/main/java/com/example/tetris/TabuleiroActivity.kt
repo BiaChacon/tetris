@@ -15,7 +15,7 @@ class TabuleiroActivity : AppCompatActivity() {
     val COLUNA = 12
     var running = true
     var speed:Long = 300
-
+    var variacao = 1
 
     var p = gerarPeca()
 
@@ -44,21 +44,22 @@ class TabuleiroActivity : AppCompatActivity() {
         }
 
         leftBt.setOnClickListener {
-            if(!checarEsquerda()){
+            if(!checarEsquerda() && !bateuLateral())
                 p.moveLeft()
-            }
         }
 
         rightBt.setOnClickListener {
-            if(checarDireita()){
+            if(!checarDireita() && !bateuLateral())
                 p.moveRight()
-            }
         }
 
         downBt.setOnClickListener {
-            p.moveDown()
+            if(podeDown())
+                p.moveDown()
         }
+
         rotateBt.setOnClickListener {
+            if(podeGirar())
             p.moveGirar()
         }
 
@@ -78,18 +79,20 @@ class TabuleiroActivity : AppCompatActivity() {
                             }
                         }
                     }
-                    //move peça atual
-                    if(!bateuPeca()){
+
+                    //se block bater em peca ou no no final fazer update do tabuleiro e criar novo block
+                    if(bateuPeca() || bateuFinal()){
+                        updateTabuleiro()
+                        fazerBlock()
+                        newBlock()
+                    }else{
                         p.moveDown()
                     }
 
-                    //print peça
                     try {
                         fazerBlock()
                     }catch (e:ArrayIndexOutOfBoundsException) {
-                        //se a peça passou das bordas eu vou parar o jogo
-                        //running = false
-                        verificarBateu()
+                        e.printStackTrace()
                     }
 
                 }
@@ -97,29 +100,18 @@ class TabuleiroActivity : AppCompatActivity() {
         }.start()
     }
 
-    fun verificarLinha(){
-
-    }
-
     fun updateTabuleiro(){
-
         tabuleiro[p.pA.x][p.pA.y] =1
         tabuleiro[p.pB.x][p.pB.y] =1
         tabuleiro[p.pC.x][p.pC.y] =1
         tabuleiro[p.pD.x][p.pD.y] =1
-
-        fazerBlock()
-        newBlock()
-
     }
 
     fun fazerBlock(){
-
         boardView[p.pA.x][p.pA.y]!!.setImageResource(R.drawable.rosa)
         boardView[p.pB.x][p.pB.y]!!.setImageResource(R.drawable.rosa)
         boardView[p.pC.x][p.pC.y]!!.setImageResource(R.drawable.rosa)
         boardView[p.pD.x][p.pD.y]!!.setImageResource(R.drawable.rosa)
-
     }
 
     fun newBlock(){
@@ -128,7 +120,7 @@ class TabuleiroActivity : AppCompatActivity() {
 
     fun gerarPeca():Block{
 
-        val random = (1..7).shuffled().first()
+        val random = (1..variacao).shuffled().first()
 
         if(random == 1)
             return Iblock(0,6)
@@ -153,16 +145,120 @@ class TabuleiroActivity : AppCompatActivity() {
                 (tabuleiro[p.pB.x+1][p.pB.y] == 1) ||
                 (tabuleiro[p.pC.x+1][p.pC.y] == 1) ||
                 (tabuleiro[p.pD.x+1][p.pD.y] == 1)){
-
-                updateTabuleiro()
-                newBlock()
                 return true
             }
         }catch (e:ArrayIndexOutOfBoundsException){
-
+            e.printStackTrace()
         }
         return false
     }
+
+    fun bateuFinal():Boolean {
+        if (p.pA.x+1 >= LINHA ||
+            p.pB.x+1 >= LINHA ||
+            p.pC.x+1 >= LINHA ||
+            p.pD.x+1 >= LINHA){
+            return true
+        }
+        return false
+    }
+
+
+    fun bateuLateral():Boolean{
+        if( p.pA.y+1 >= COLUNA ||
+            p.pB.y+1 >= COLUNA ||
+            p.pC.y+1 >= COLUNA ||
+            p.pD.y+1 >= COLUNA){
+
+            return true
+
+        }else if(p.pA.y == 0 ||
+                 p.pB.y == 0 ||
+                 p.pC.y == 0 ||
+                 p.pD.y == 0){
+
+            return true
+
+        }
+            return false
+    }
+
+    fun checarDireita():Boolean{
+        try {
+            if((tabuleiro[p.pA.x][p.pA.y+1] == 1) ||
+                (tabuleiro[p.pB.x][p.pB.y+1] == 1) ||
+                (tabuleiro[p.pC.x][p.pC.y+1] == 1) ||
+                (tabuleiro[p.pD.x][p.pD.y+1] == 1)) {
+                return true
+            }
+        }catch (e:ArrayIndexOutOfBoundsException){
+            Log.i("ERRO","Erro direita")
+        }
+        return false
+    }
+
+    fun checarEsquerda():Boolean{
+        try {
+            if((tabuleiro[p.pA.x][p.pA.y-1] == 1) ||
+                (tabuleiro[p.pB.x][p.pB.y-1] == 1) ||
+                (tabuleiro[p.pC.x][p.pC.y-1] == 1) ||
+                (tabuleiro[p.pD.x][p.pD.y-1] == 1)) {
+                return true
+            }
+        }catch (e:ArrayIndexOutOfBoundsException){
+            Log.i("ERRO","Erro esquerda")
+        }
+        return false
+    }
+
+    fun podeDown():Boolean{
+        if (p.pA.x+1 >= LINHA ||
+            p.pB.x+1 >= LINHA ||
+            p.pC.x+1 >= LINHA ||
+            p.pD.x+1 >= LINHA) {
+            return false
+        }else if((tabuleiro[p.pA.x+1][p.pA.y] == 1) ||
+            (tabuleiro[p.pB.x+1][p.pB.y] == 1) ||
+            (tabuleiro[p.pC.x+1][p.pC.y] == 1) ||
+            (tabuleiro[p.pD.x+1][p.pD.y] == 1)){
+            return false
+        }
+        return true
+    }
+
+    fun podeGirar():Boolean{
+        return true
+    }
+
+    /*fun verificarLinha(){
+        var cont=0
+        for (i in 0 until LINHA) {
+            for (j in 0 until COLUNA) {
+                if(tabuleiro[i][j] == 1)
+                    cont+=1
+            }
+            if (cont == COLUNA)
+                tirar(i)
+
+        }
+    }
+
+    fun tirar(linha:Int){
+
+        for (j in 0 until COLUNA) {
+            tabuleiro[linha][j] == 0
+        }
+
+        for (i in 0 until LINHA) {
+            for (j in 0 until COLUNA) {
+                tabuleiro[i][j] == tabuleiro[i+1][j]
+
+            }
+        }
+
+    }
+
+
 
     fun verificarBateu(){
         if(p.pA.x >= LINHA ||
@@ -188,48 +284,8 @@ class TabuleiroActivity : AppCompatActivity() {
         updateTabuleiro()
     }
 
-    fun bateuLateral(){
-        if( p.pA.y >= COLUNA ||
-            p.pB.y >= COLUNA ||
-            p.pC.y >= COLUNA ||
-            p.pD.y >= COLUNA){
 
-            p.moveLeft()
 
-        }else{
-
-            p.moveRight()
-
-        }
-
-    }
-
-    fun checarDireita():Boolean{
-        try {
-            if((tabuleiro[p.pA.x][p.pA.y+1] == 0) ||
-                (tabuleiro[p.pB.x][p.pB.y+1] == 0) ||
-                (tabuleiro[p.pC.x][p.pC.y+1] == 0) ||
-                (tabuleiro[p.pD.x][p.pD.y+1] == 0)) {
-                return true
-            }
-        }catch (e:ArrayIndexOutOfBoundsException){
-            Log.i("ERRO","Erro não importante")
-        }
-        return false
-    }
-
-    fun checarEsquerda():Boolean{
-        try {
-            if((tabuleiro[p.pA.x][p.pA.y-1] == 1) ||
-                (tabuleiro[p.pB.x][p.pB.y-1] == 1) ||
-                (tabuleiro[p.pC.x][p.pC.y-1] == 1) ||
-                (tabuleiro[p.pD.x][p.pD.y-1] == 1)) {
-                return true
-            }
-        }catch (e:ArrayIndexOutOfBoundsException){
-            Log.i("ERRO","Erro não importante")
-        }
-        return false
-    }
+    }*/
 
 }
