@@ -7,6 +7,8 @@ abstract class Block(var x:Int, var y:Int){
     lateinit var pC:Ponto
     lateinit var pD:Ponto
 
+    var giro = 0
+
     var state = true
 
     abstract fun moveGirar()

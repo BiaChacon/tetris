@@ -6,6 +6,7 @@ class Jblock(x:Int, y:Int):Block(x,y){
         pB = Ponto(x+1,y)
         pC = Ponto(x+2,y)
         pD = Ponto(x+2,y-1)
+        giro = 2
     }
 
     override fun moveDown() {

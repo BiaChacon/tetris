@@ -6,6 +6,7 @@ class Iblock(x:Int, y:Int): Block(x,y){
         pB = Ponto(x+1,y)
         pC = Ponto(x+2,y)
         pD = Ponto(x+3, y)
+        giro = 3
     }
 
     override fun moveDown() {

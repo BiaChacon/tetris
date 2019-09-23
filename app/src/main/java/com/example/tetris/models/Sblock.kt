@@ -6,6 +6,7 @@ class Sblock(x:Int, y:Int):Block(x,y){
         pB = Ponto(x,y-1)
         pC = Ponto(x+1,y-1)
         pD = Ponto(x+1, y-2)
+        giro = 1
     }
 
     override fun moveDown() {

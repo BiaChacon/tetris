@@ -60,7 +60,7 @@ class TabuleiroActivity : AppCompatActivity() {
 
         rotateBt.setOnClickListener {
             if(podeGirar())
-            p.moveGirar()
+                p.moveGirar()
         }
 
         gameRun()
@@ -122,7 +122,7 @@ class TabuleiroActivity : AppCompatActivity() {
 
         val random = (1..variacao).shuffled().first()
 
-        if(random == 1)
+        /*if(random == 1)
             return Iblock(0,6)
         else if (random == 2)
             return Jblock(0,6)
@@ -130,12 +130,12 @@ class TabuleiroActivity : AppCompatActivity() {
             return Lblock(2,6)
         else if(random == 4)
             return Oblock(0,6)
-        else if (random == 5)
+        else if (random == 5)*/
             return Sblock(0,6)
-        else if (random == 6)
+        /*else if (random == 6)
             return Tblock(0,6)
         else
-            return Zblock(0,6)
+            return Zblock(0,6)*/
 
     }
 
@@ -227,6 +227,12 @@ class TabuleiroActivity : AppCompatActivity() {
     }
 
     fun podeGirar():Boolean{
+        if(p.pA.y+p.giro >= COLUNA || p.pA.x+p.giro >= LINHA){
+            return false
+        }else if (tabuleiro[p.pA.x+p.giro][p.pA.y] == 1 ||
+                  tabuleiro[p.pA.x][p.pA.y+p.giro] == 1){
+            return false
+        }
         return true
     }
 

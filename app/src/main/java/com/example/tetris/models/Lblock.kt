@@ -6,6 +6,7 @@ class Lblock(x:Int, y:Int):Block(x,y){
         pB = Ponto(x-1,y)
         pC = Ponto(x-2,y)
         pD = Ponto(x,y+1)
+        giro = 2
     }
 
     override fun moveDown() {
@@ -25,8 +26,8 @@ class Lblock(x:Int, y:Int):Block(x,y){
             pC.x = pA.x
             pC.y = pA.y+2
             //trocar ponto D
-            pD.x = pA.x+1
-            pD.y = pA.y
+            pD.x = pA.x-1
+            pD.y = pA.y+2
             //mudar state para horizontal
             state = false
         }else{
