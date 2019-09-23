@@ -6,6 +6,7 @@ class Tblock(x:Int, y:Int):Block(x,y){
         pB = Ponto(x+1, y-1)
         pC = Ponto(x+1,y)
         pD = Ponto(x+1,y+1)
+        giro = 1
     }
 
     override fun moveDown() {

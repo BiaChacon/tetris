@@ -16,7 +16,7 @@
         android:layout_marginTop="40sp">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/pontosText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -26,7 +26,7 @@
             app:fontFamily="@font/orbitron_black"/>
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/pontAtualText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -36,7 +36,7 @@
             app:fontFamily="@font/orbitron_black" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/proximaText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"

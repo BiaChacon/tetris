@@ -6,7 +6,7 @@ class Iblock(x:Int, y:Int): Block(x,y){
         pB = Ponto(x+1,y)
         pC = Ponto(x+2,y)
         pD = Ponto(x+3, y)
-        giro = 3
+        giro = 2
     }
 
     override fun moveDown() {
@@ -17,28 +17,29 @@ class Iblock(x:Int, y:Int): Block(x,y){
     }
 
     override fun moveGirar() {
+        //pivo B
         if (state){
-            //trocar ponto B
-            pB.x = pA.x
-            pB.y = pA.y+1
+            //trocar ponto A
+            pA.x = pB.x
+            pA.y = pB.y-1
             //trocar ponto C
-            pC.x = pA.x
-            pC.y = pA.y+2
+            pC.x = pB.x
+            pC.y = pB.y+1
             //trocar ponto D
-            pD.x = pA.x
-            pD.y = pA.y+3
+            pD.x = pB.x
+            pD.y = pB.y+2
             //mudar state para horizontal
             state = false
         }else{
-            //trocar ponto B
-            pB.x = pA.x+1
-            pB.y = pA.y
+            //trocar ponto A
+            pA.x = pB.x-1
+            pA.y = pB.y
             //trocar ponto C
-            pC.x = pA.x+2
-            pC.y = pA.y
+            pC.x = pB.x+1
+            pC.y = pB.y
             //trocar ponto D
-            pD.x = pA.x+3
-            pD.y = pA.y
+            pD.x = pB.x+2
+            pD.y = pB.y
             //mudar state para vertical
             state = true
         }

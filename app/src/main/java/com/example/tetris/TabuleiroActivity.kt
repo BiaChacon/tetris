@@ -10,12 +10,10 @@ import com.example.tetris.models.*
 
 class TabuleiroActivity : AppCompatActivity() {
 
-
     val LINHA = 22
     val COLUNA = 12
     var running = true
-    var speed:Long = 300
-    var variacao = 1
+    var game = Game()
 
     var p = gerarPeca()
 
@@ -69,7 +67,7 @@ class TabuleiroActivity : AppCompatActivity() {
     fun gameRun(){
         Thread{
             while(running){
-                Thread.sleep(speed)
+                Thread.sleep(game.speed)
                 runOnUiThread{
                     //limpa tela
                     for (i in 0 until LINHA) {
@@ -79,10 +77,11 @@ class TabuleiroActivity : AppCompatActivity() {
                             }
                         }
                     }
-
+                    pontAtualText.text = game.postos.toString()
                     //se block bater em peca ou no no final fazer update do tabuleiro e criar novo block
                     if(bateuPeca() || bateuFinal()){
                         updateTabuleiro()
+                        verificarPonto()
                         fazerBlock()
                         newBlock()
                     }else{
@@ -120,23 +119,23 @@ class TabuleiroActivity : AppCompatActivity() {
 
     fun gerarPeca():Block{
 
-        val random = (1..variacao).shuffled().first()
+        val random = (1..game.variacao).shuffled().first()
 
-        /*if(random == 1)
+        //if(random == 1)
             return Iblock(0,6)
-        else if (random == 2)
+        /*else if (random == 2)
             return Jblock(0,6)
         else if(random == 3)
             return Lblock(2,6)
         else if(random == 4)
             return Oblock(0,6)
-        else if (random == 5)*/
+        else if (random == 5)
             return Sblock(0,6)
-        /*else if (random == 6)
+        else if (random == 6)
             return Tblock(0,6)
         else
-            return Zblock(0,6)*/
-
+            return Zblock(0,6)
+        */
     }
 
     fun bateuPeca():Boolean{
@@ -162,7 +161,6 @@ class TabuleiroActivity : AppCompatActivity() {
         }
         return false
     }
-
 
     fun bateuLateral():Boolean{
         if( p.pA.y+1 >= COLUNA ||
@@ -226,47 +224,32 @@ class TabuleiroActivity : AppCompatActivity() {
         return true
     }
 
-    fun podeGirar():Boolean{
-        if(p.pA.y+p.giro >= COLUNA || p.pA.x+p.giro >= LINHA){
-            return false
-        }else if (tabuleiro[p.pA.x+p.giro][p.pA.y] == 1 ||
-                  tabuleiro[p.pA.x][p.pA.y+p.giro] == 1){
-            return false
-        }
-        return true
-    }
-
-    /*fun verificarLinha(){
-        var cont=0
+    fun verificarPonto(){
         for (i in 0 until LINHA) {
-            for (j in 0 until COLUNA) {
-                if(tabuleiro[i][j] == 1)
-                    cont+=1
-            }
-            if (cont == COLUNA)
+            if (tabuleiro[i].sum() == 12){
                 tirar(i)
-
+                game.postos +=1
+            }
         }
     }
 
     fun tirar(linha:Int){
-
-        for (j in 0 until COLUNA) {
-            tabuleiro[linha][j] == 0
-        }
-
-        for (i in 0 until LINHA) {
-            for (j in 0 until COLUNA) {
-                tabuleiro[i][j] == tabuleiro[i+1][j]
-
-            }
+        for (i in linha downTo  1) {
+                tabuleiro[i] = tabuleiro[i-1]
         }
 
     }
 
-
-
-    fun verificarBateu(){
+    fun podeGirar():Boolean{
+        if(p.pA.y+p.giro >= COLUNA || p.pA.x+p.giro >= LINHA || p.pA.y == 0){
+            return false
+        }else if (tabuleiro[p.pA.x+p.giro][p.pA.y] == 1 ||
+            tabuleiro[p.pA.x][p.pA.y+p.giro] == 1){
+            return false
+        }
+        return true
+    }
+    /*fun verificarBateu(){
         if(p.pA.x >= LINHA ||
             p.pB.x >= LINHA ||
             p.pC.x >= LINHA ||
