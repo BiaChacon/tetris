@@ -21,13 +21,13 @@ class Lblock(x:Int, y:Int):Block(x,y){
         if (state){
             //trocar ponto B
             pB.x = pA.x
-            pB.y = pA.y+1
+            pB.y = pA.y-1
             //trocar ponto C
             pC.x = pA.x
-            pC.y = pA.y+2
+            pC.y = pA.y-2
             //trocar ponto D
             pD.x = pA.x-1
-            pD.y = pA.y+2
+            pD.y = pA.y
             //mudar state para horizontal
             state = false
         }else{

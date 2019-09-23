@@ -34,11 +34,11 @@ class Iblock(x:Int, y:Int): Block(x,y){
             pB.x = pA.x-1
             pB.y = pA.y
             //trocar ponto C
-            pC.x = pB.x+1
-            pC.y = pB.y
+            pC.x = pA.x+1
+            pC.y = pA.y
             //trocar ponto D
-            pD.x = pB.x+2
-            pD.y = pB.y
+            pD.x = pA.x+2
+            pD.y = pA.y
             //mudar state para vertical
             state = true
         }

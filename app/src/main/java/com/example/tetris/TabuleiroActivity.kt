@@ -120,21 +120,21 @@ class TabuleiroActivity : AppCompatActivity() {
 
         val random = (1..game.variacao).shuffled().first()
 
-        //if(random == 1)
+        if(random == 1)
             return Iblock(1,6)
-        /*else if (random == 2)
-            return Jblock(0,6)
+        else if (random == 2)
+            return Jblock(2,6)
         else if(random == 3)
             return Lblock(2,6)
         else if(random == 4)
             return Oblock(0,6)
         else if (random == 5)
-            return Sblock(0,6)
+            return Sblock(1,6)
         else if (random == 6)
             return Tblock(0,6)
         else
             return Zblock(0,6)
-        */
+
     }
 
     fun bateuPeca():Boolean{
@@ -240,13 +240,39 @@ class TabuleiroActivity : AppCompatActivity() {
     }
 
     fun girar(){
-            while (p.pA.y < p.giro || p.pA.y > (COLUNA-1) - p.giro){
+
+        //salvar posicao
+        var pontoA = Ponto(p.pA.x, p.pA.y)
+        var pontoB = Ponto(p.pB.x, p.pB.y)
+        var pontoC = Ponto(p.pC.x, p.pC.y)
+        var pontoD = Ponto(p.pD.x, p.pD.y)
+
+        //achar lugar para girar
+        while (p.pA.y < p.giro || p.pA.y > (COLUNA-1) - p.giro){
                     if (p.pA.y<p.giro){
                         p.moveRight()
                     }else{
                         p.moveLeft()
                     }
             }
+
+        //ver se tem espaco em baixo para rodar
+        if (p.pA.x < LINHA - p.giro) {
+            p.moveGirar()
+        }
+
+        //verificar se bate em alguma peca e se bater voltar a ser o que era antes
+        if ((tabuleiro[p.pA.x][p.pA.y] == 1) ||
+                (tabuleiro[p.pB.x][p.pB.y] == 1) ||
+                (tabuleiro[p.pC.x][p.pC.y] == 1) ||
+                (tabuleiro[p.pD.x][p.pD.y] == 1)){
+
+                   p.pA = Ponto(pontoA.x, pontoA.y)
+                   p.pB = Ponto(pontoB.x, pontoB.y)
+                   p.pC = Ponto(pontoC.x, pontoC.y)
+                   p.pD = Ponto(pontoD.x, pontoD.y)
+
+        }
 
     }
 
