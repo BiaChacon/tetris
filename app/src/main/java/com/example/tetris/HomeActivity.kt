@@ -14,6 +14,7 @@ class HomeActivity : AppCompatActivity() {
         newGameBt.setOnClickListener {
             var i = Intent(this,TabuleiroActivity::class.java)
             startActivity(i)
+            finish()
         }
 
         confBt.setOnClickListener {

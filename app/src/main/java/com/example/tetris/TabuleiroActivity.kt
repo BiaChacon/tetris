@@ -1,5 +1,6 @@
 package com.example.tetris
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,32 +11,26 @@ import com.example.tetris.models.*
 
 class TabuleiroActivity : AppCompatActivity() {
 
-    val LINHA = 22
-    val COLUNA = 12
     var running = true
     var game = Game()
 
     var p = gerarPeca()
 
-    var tabuleiro = Array(LINHA) {
-        Array(COLUNA){0}
-    }
-
-    var boardView = Array(LINHA){
-        arrayOfNulls<ImageView>(COLUNA)
+    var boardView = Array(game.LINHA){
+        arrayOfNulls<ImageView>(game.COLUNA)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tabuleiro)
 
-        gridboard.rowCount = LINHA
-        gridboard.columnCount = COLUNA
+        gridboard.rowCount = game.LINHA
+        gridboard.columnCount = game.COLUNA
 
         val inflater = LayoutInflater.from(this)
 
-        for (i in 0 until LINHA) {
-            for (j in 0 until COLUNA) {
+        for (i in 0 until game.LINHA) {
+            for (j in 0 until game.COLUNA) {
                 boardView[i][j] = inflater.inflate(R.layout.inflate_image_view, gridboard, false) as ImageView
                 gridboard.addView( boardView[i][j])
             }
@@ -69,14 +64,20 @@ class TabuleiroActivity : AppCompatActivity() {
                 Thread.sleep(game.speed)
                 runOnUiThread{
                     //limpa tela
-                    for (i in 0 until LINHA) {
-                        for (j in 0 until COLUNA) {
-                            if (tabuleiro[i][j] == 0){
+                    for (i in 0 until game.LINHA) {
+                        for (j in 0 until game.COLUNA) {
+                            if (game.tabuleiro[i][j] == 0){
                                 boardView[i][j]!!.setImageResource(R.drawable.branco)
                             }
                         }
                     }
-                    pontAtualText.text = game.postos.toString()
+
+                    //verificar se perdeu
+                    perdeu()
+
+                    //mostrar pontos
+                    pontAtualText.text = game.pontos.toString()
+
                     //se block bater em peca ou no no final fazer update do tabuleiro e criar novo block
                     if(bateuPeca() || bateuFinal()){
                         updateTabuleiro()
@@ -99,10 +100,10 @@ class TabuleiroActivity : AppCompatActivity() {
     }
 
     fun updateTabuleiro(){
-        tabuleiro[p.pA.x][p.pA.y] =1
-        tabuleiro[p.pB.x][p.pB.y] =1
-        tabuleiro[p.pC.x][p.pC.y] =1
-        tabuleiro[p.pD.x][p.pD.y] =1
+        game.tabuleiro[p.pA.x][p.pA.y] =1
+        game.tabuleiro[p.pB.x][p.pB.y] =1
+        game.tabuleiro[p.pC.x][p.pC.y] =1
+        game.tabuleiro[p.pD.x][p.pD.y] =1
     }
 
     fun fazerBlock(){
@@ -139,10 +140,10 @@ class TabuleiroActivity : AppCompatActivity() {
 
     fun bateuPeca():Boolean{
         try {
-            if((tabuleiro[p.pA.x+1][p.pA.y] == 1) ||
-                (tabuleiro[p.pB.x+1][p.pB.y] == 1) ||
-                (tabuleiro[p.pC.x+1][p.pC.y] == 1) ||
-                (tabuleiro[p.pD.x+1][p.pD.y] == 1)){
+            if((game.tabuleiro[p.pA.x+1][p.pA.y] == 1) ||
+                (game.tabuleiro[p.pB.x+1][p.pB.y] == 1) ||
+                (game.tabuleiro[p.pC.x+1][p.pC.y] == 1) ||
+                (game.tabuleiro[p.pD.x+1][p.pD.y] == 1)){
                 return true
             }
         }catch (e:ArrayIndexOutOfBoundsException){
@@ -152,20 +153,20 @@ class TabuleiroActivity : AppCompatActivity() {
     }
 
     fun bateuFinal():Boolean {
-        if (p.pA.x+1 >= LINHA ||
-            p.pB.x+1 >= LINHA ||
-            p.pC.x+1 >= LINHA ||
-            p.pD.x+1 >= LINHA){
+        if (p.pA.x+1 >= game.LINHA ||
+            p.pB.x+1 >= game.LINHA ||
+            p.pC.x+1 >= game.LINHA ||
+            p.pD.x+1 >= game.LINHA){
             return true
         }
         return false
     }
 
     fun bateuLateral():Boolean{
-        if( p.pA.y+1 >= COLUNA ||
-            p.pB.y+1 >= COLUNA ||
-            p.pC.y+1 >= COLUNA ||
-            p.pD.y+1 >= COLUNA){
+        if( p.pA.y+1 >= game.COLUNA ||
+            p.pB.y+1 >= game.COLUNA ||
+            p.pC.y+1 >= game.COLUNA ||
+            p.pD.y+1 >= game.COLUNA){
 
             return true
 
@@ -182,10 +183,10 @@ class TabuleiroActivity : AppCompatActivity() {
 
     fun checarDireita():Boolean{
         try {
-            if((tabuleiro[p.pA.x][p.pA.y+1] == 1) ||
-                (tabuleiro[p.pB.x][p.pB.y+1] == 1) ||
-                (tabuleiro[p.pC.x][p.pC.y+1] == 1) ||
-                (tabuleiro[p.pD.x][p.pD.y+1] == 1)) {
+            if((game.tabuleiro[p.pA.x][p.pA.y+1] == 1) ||
+                (game.tabuleiro[p.pB.x][p.pB.y+1] == 1) ||
+                (game.tabuleiro[p.pC.x][p.pC.y+1] == 1) ||
+                (game.tabuleiro[p.pD.x][p.pD.y+1] == 1)) {
                 return true
             }
         }catch (e:ArrayIndexOutOfBoundsException){
@@ -196,10 +197,10 @@ class TabuleiroActivity : AppCompatActivity() {
 
     fun checarEsquerda():Boolean{
         try {
-            if((tabuleiro[p.pA.x][p.pA.y-1] == 1) ||
-                (tabuleiro[p.pB.x][p.pB.y-1] == 1) ||
-                (tabuleiro[p.pC.x][p.pC.y-1] == 1) ||
-                (tabuleiro[p.pD.x][p.pD.y-1] == 1)) {
+            if((game.tabuleiro[p.pA.x][p.pA.y-1] == 1) ||
+                (game.tabuleiro[p.pB.x][p.pB.y-1] == 1) ||
+                (game.tabuleiro[p.pC.x][p.pC.y-1] == 1) ||
+                (game.tabuleiro[p.pD.x][p.pD.y-1] == 1)) {
                 return true
             }
         }catch (e:ArrayIndexOutOfBoundsException){
@@ -209,32 +210,32 @@ class TabuleiroActivity : AppCompatActivity() {
     }
 
     fun podeDown():Boolean{
-        if (p.pA.x+1 >= LINHA ||
-            p.pB.x+1 >= LINHA ||
-            p.pC.x+1 >= LINHA ||
-            p.pD.x+1 >= LINHA) {
+        if (p.pA.x+1 >= game.LINHA ||
+            p.pB.x+1 >= game.LINHA ||
+            p.pC.x+1 >= game.LINHA ||
+            p.pD.x+1 >= game.LINHA) {
             return false
-        }else if((tabuleiro[p.pA.x+1][p.pA.y] == 1) ||
-            (tabuleiro[p.pB.x+1][p.pB.y] == 1) ||
-            (tabuleiro[p.pC.x+1][p.pC.y] == 1) ||
-            (tabuleiro[p.pD.x+1][p.pD.y] == 1)){
+        }else if((game.tabuleiro[p.pA.x+1][p.pA.y] == 1) ||
+            (game.tabuleiro[p.pB.x+1][p.pB.y] == 1) ||
+            (game.tabuleiro[p.pC.x+1][p.pC.y] == 1) ||
+            (game.tabuleiro[p.pD.x+1][p.pD.y] == 1)){
             return false
         }
         return true
     }
 
     fun verificarPonto(){
-        for (i in 0 until LINHA) {
-            if (tabuleiro[i].sum() == 12){
+        for (i in 0 until game.LINHA) {
+            if (game.tabuleiro[i].sum() == 12){
                 tirar(i)
-                game.postos +=1
+                game.pontos +=1
             }
         }
     }
 
     fun tirar(linha:Int){
         for (i in linha downTo  1) {
-                tabuleiro[i] = tabuleiro[i-1]
+            game.tabuleiro[i] = game.tabuleiro[i-1]
         }
 
     }
@@ -248,7 +249,7 @@ class TabuleiroActivity : AppCompatActivity() {
         var pontoD = Ponto(p.pD.x, p.pD.y)
 
         //achar lugar para girar
-        while (p.pA.y < p.giro || p.pA.y > (COLUNA-1) - p.giro){
+        while (p.pA.y < p.giro || p.pA.y > (game.COLUNA-1) - p.giro){
                     if (p.pA.y<p.giro){
                         p.moveRight()
                     }else{
@@ -257,15 +258,15 @@ class TabuleiroActivity : AppCompatActivity() {
             }
 
         //ver se tem espaco em baixo para rodar
-        if (p.pA.x < LINHA - p.giro) {
+        if (p.pA.x < game.LINHA - p.giro) {
             p.moveGirar()
         }
 
         //verificar se bate em alguma peca e se bater voltar a ser o que era antes
-        if ((tabuleiro[p.pA.x][p.pA.y] == 1) ||
-                (tabuleiro[p.pB.x][p.pB.y] == 1) ||
-                (tabuleiro[p.pC.x][p.pC.y] == 1) ||
-                (tabuleiro[p.pD.x][p.pD.y] == 1)){
+        if ((game.tabuleiro[p.pA.x][p.pA.y] == 1) ||
+                (game.tabuleiro[p.pB.x][p.pB.y] == 1) ||
+                (game.tabuleiro[p.pC.x][p.pC.y] == 1) ||
+                (game.tabuleiro[p.pD.x][p.pD.y] == 1)){
 
                    p.pA = Ponto(pontoA.x, pontoA.y)
                    p.pB = Ponto(pontoB.x, pontoB.y)
@@ -276,32 +277,30 @@ class TabuleiroActivity : AppCompatActivity() {
 
     }
 
-    /*fun verificarBateu(){
-        if(p.pA.x >= LINHA ||
-            p.pB.x >= LINHA ||
-            p.pC.x >= LINHA ||
-            p.pD.x >= LINHA){
-
-            bateuFinal()
-
-        }else{
-
-            bateuLateral()
-
+    fun bateuCima():Boolean{
+        if (p.pA.x == 0 ||
+            p.pB.x == 0 ||
+            p.pC.x == 0 ||
+            p.pD.x == 0) {
+            return true
         }
-
+        return false
     }
 
-    fun bateuFinal(){
-        p.pA.x-=1
-        p.pB.x-=1
-        p.pC.x-=1
-        p.pD.x-=1
-        updateTabuleiro()
+    fun perdeu(){
+        if(bateuPeca() && bateuCima()){
+
+            running = false
+
+            var i = Intent(this,ResultActivity::class.java)
+            var b = Bundle()
+
+            b.putInt("pontuacao", game.pontos)
+            i.putExtras(b)
+
+            startActivity(i)
+            finish()
+        }
     }
-
-
-
-    }*/
 
 }
