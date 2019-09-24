@@ -13,6 +13,7 @@ class TabuleiroActivity : AppCompatActivity() {
 
     var running = true
     var game = Game()
+    var velocidade = 2
 
     var p = gerarPeca()
 
@@ -23,6 +24,9 @@ class TabuleiroActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tabuleiro)
+
+        var param = intent.extras
+        velocidade = param!!.getInt("velocidade")
 
         gridboard.rowCount = game.LINHA
         gridboard.columnCount = game.COLUNA
@@ -61,7 +65,7 @@ class TabuleiroActivity : AppCompatActivity() {
     fun gameRun(){
         Thread{
             while(running){
-                Thread.sleep(game.speed)
+                Thread.sleep(game.speed[velocidade])
                 runOnUiThread{
                     //limpa tela
                     for (i in 0 until game.LINHA) {
