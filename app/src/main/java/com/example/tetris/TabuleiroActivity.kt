@@ -288,18 +288,20 @@ class TabuleiroActivity : AppCompatActivity() {
     }
 
     fun perdeu(){
+
         if(bateuPeca() && bateuCima()){
 
             running = false
 
             var i = Intent(this,ResultActivity::class.java)
-            var b = Bundle()
+            //var b = Bundle()
 
-            b.putInt("pontuacao", game.pontos)
-            i.putExtras(b)
+            //b.putInt("pontuacao", game.pontos)
+            //i.putExtras(b)
 
             startActivity(i)
             finish()
+
         }
     }
 
