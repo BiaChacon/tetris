@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tetris</string>
+    <string name="configura_s" translatable="false">Configuration</string>
+    <string name="configurar" translatable="false">To set up</string>
+    <string name="continuar" translatable="false">Continue</string>
+    <string name="f_cil" translatable="false">Easy</string>
+    <string name="normal" translatable="false">Normal</string>
+    <string name="dif_cil" translatable="false">Hard</string>
+    <string name="novo_jogo" translatable="false">New game</string>
+    <string name="dificuldade" translatable="false">Difficulty:</string>
+    <string name="pr_xima" translatable="false">Next:</string>
+    <string name="pontua_o" translatable="false">Points:</string>
+</resources>
