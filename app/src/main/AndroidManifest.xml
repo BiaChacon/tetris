@@ -9,13 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ResultActivity"></activity>
-        <activity android:name=".TabuleiroActivity" />
-        <activity android:name=".ConfigActivity" />
-        <activity android:name=".HomeActivity">
+
+        <activity android:name=".ResultActivity"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name=".TabuleiroActivity"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name=".ConfigActivity"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name=".HomeActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
