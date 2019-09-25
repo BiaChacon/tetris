@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_tabuleiro.*
 import android.view.LayoutInflater
 import androidx.lifecycle.ViewModelProviders
 import com.example.tetris.models.*
+import kotlin.random.Random
 
 class TabuleiroActivity : AppCompatActivity() {
 
@@ -237,7 +238,6 @@ class TabuleiroActivity : AppCompatActivity() {
         }
         return true
     }
-
 
     fun podeDown():Boolean{
         if (p.pA.x+1 >= LINHA ||
