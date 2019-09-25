@@ -40,6 +40,7 @@
             android:background="@drawable/bt_background"
             android:fontFamily="@font/orbitron_black"
             android:text="@string/continuar"
+            android:visibility="gone"
             android:textColor="@color/branco"
             android:textSize="24sp" />
 

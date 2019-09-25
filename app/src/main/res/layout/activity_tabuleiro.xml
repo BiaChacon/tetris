@@ -46,13 +46,12 @@
             app:fontFamily="@font/orbitron_black"
             android:layout_marginLeft="50sp"/>
 
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="60sp"
-                android:layout_marginLeft="5sp">
-            </GridLayout>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/rosa" />
 
     </LinearLayout>
 

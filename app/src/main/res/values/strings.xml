@@ -1,13 +1,16 @@
 <resources>
-    <string name="app_name" translatable="false">Tetris</string>
-    <string name="pontua_o" translatable="false">Pontos:</string>
-    <string name="pr_xima" translatable="false">Próxima:</string>
-    <string name="novo_jogo" translatable="false">Novo jogo</string>
-    <string name="continuar" translatable="false">Continuar</string>
-    <string name="configurar" translatable="false">Configurar</string>
-    <string name="configura_s" translatable="false">Configuração</string>
-    <string name="dificuldade" translatable="false">Dificuldade:</string>
-    <string name="f_cil" translatable="false">Fácil</string>
-    <string name="normal" translatable="false">Normal</string>
-    <string name="dif_cil" translatable="false">Difícil</string>
+    <string name="app_name">Tetris</string>
+    <string name="pontua_o">Pontos:</string>
+    <string name="pr_xima">Próxima:</string>
+    <string name="novo_jogo">Novo jogo</string>
+    <string name="continuar">Continuar</string>
+    <string name="configurar">Configurar</string>
+    <string name="configura_s">Configuração</string>
+    <string name="dificuldade">Dificuldade:</string>
+    <string name="f_cil">Fácil</string>
+    <string name="normal">Normal</string>
+    <string name="dif_cil">Difícil</string>
+    <string name="sair">Sair</string>
+    <string name="novo_record">Novo Record !</string>
+    <string name="record">Record:</string>
 </resources>

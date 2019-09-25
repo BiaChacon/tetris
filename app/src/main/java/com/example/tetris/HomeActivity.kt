@@ -5,50 +5,62 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import kotlinx.android.synthetic.main.activity_home.*
 
-class HomeActivity : AppCompatActivity() {
-
-
-    val PREFS = "prefs_file"
-    val CODE = 99
+class HomeActivity : AppCompatActivity(), View.OnClickListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        newGameBt.setOnClickListener(this)
+        confBt.setOnClickListener(this)
+        continuaBt.setOnClickListener(this)
 
-        var settings = getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-        var edit = settings.edit()
+        var params = intent.extras
+        var continuar = params?.getBoolean("cod")
 
-        newGameBt.setOnClickListener {
-            var i = Intent(this,TabuleiroActivity::class.java)
-            var b = Bundle()
-            b.putInt("velocidade", settings.getInt("velocidade", 1))
-            i.putExtras(b)
-            startActivity(i)
-            finish()
+        when (continuar) {
+            true -> {
+                continuaBt.visibility = View.VISIBLE
+            }
         }
 
-        confBt.setOnClickListener {
-            var i = Intent(this,ConfigActivity::class.java)
-            startActivityForResult(i, CODE)
-        }
 
+    }
+
+    override fun onClick(view: View) {
+        val id = view.id
+        when(id){
+            newGameBt.id->{
+                var i = Intent(this, TabuleiroActivity::class.java)
+                startActivity(i)
+            }
+            confBt.id->{
+                var i = Intent(this, ConfigActivity::class.java)
+                startActivity(i)
+            }
+            continuaBt.id->{
+                var i = Intent()
+                setResult(Activity.RESULT_OK, i)
+                finish()
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        var p = data?.extras
-        var settings = getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-        var edit = settings.edit()
+        var settings = getSharedPreferences("prefs", Context.MODE_PRIVATE)
+        var editor = settings.edit()
+        val params = data?.extras
         when(resultCode){
-            Activity.RESULT_OK ->{
-                edit.putInt("velocidade", p!!.getInt("velocidade"))
-                edit.commit()
+            Activity.RESULT_OK->{
+                editor.clear()
+                editor.putInt("dificuldade", params!!.getInt("dificuldade"))
+                editor.commit()
             }
         }
-
     }
 
 }

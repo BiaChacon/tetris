@@ -15,21 +15,18 @@ class ConfigActivity : AppCompatActivity() {
 
         var b = Bundle()
 
-        when(R.id.radioGroup){
-            R.id.facilRB ->{
-                b.putInt("velocidade", 0)
 
-            }
-            R.id.normalRB ->{
-                b.putInt("velocidade", 1)
-            }
-            R.id.dificilRB ->{
-                b.putInt("velocidade", 2)
-            }
-        }
 
         saveBt.setOnClickListener {
-            var i = Intent(this,ConfigActivity::class.java)
+           if (normalRB.isChecked)
+               b.putInt("dificuldade", 0)
+           if(facilRB.isChecked)
+               b.putInt("dificuldade", 1)
+           if (dificilRB.isChecked)
+               b.putInt("dificuldade", 2)
+
+
+            var i = Intent(this,HomeActivity::class.java)
             i.putExtras(b)
             setResult(Activity.RESULT_OK, i)
             finish()
