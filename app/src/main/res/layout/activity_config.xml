@@ -58,7 +58,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/branco"
-                android:checked="true"
                 android:fontFamily="@font/orbitron_black"
                 android:text="@string/normal"
                 android:textColor="@color/branco" />
