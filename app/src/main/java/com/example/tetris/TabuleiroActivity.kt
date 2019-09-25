@@ -38,6 +38,7 @@ class TabuleiroActivity : AppCompatActivity() {
     var boardView = Array(LINHA){
         arrayOfNulls<ImageView>(COLUNA)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tabuleiro)
