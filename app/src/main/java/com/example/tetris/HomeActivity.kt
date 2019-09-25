@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity(), View.OnClickListener{
@@ -58,6 +59,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
             Activity.RESULT_OK->{
                 editor.clear()
                 editor.putInt("dificuldade", params!!.getInt("dificuldade"))
+                //Toast.makeText(this, params!!.getInt("dificuldade"), Toast.LENGTH_SHORT).show()
                 editor.commit()
             }
         }

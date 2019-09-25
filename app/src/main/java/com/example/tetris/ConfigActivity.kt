@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_config.*
 
 class ConfigActivity : AppCompatActivity() {
@@ -25,7 +26,7 @@ class ConfigActivity : AppCompatActivity() {
            if (dificilRB.isChecked)
                b.putInt("dificuldade", 2)
 
-
+            //Toast.makeText(this, "${b.getInt("dificuldade")}", Toast.LENGTH_SHORT).show()
             var i = Intent(this,HomeActivity::class.java)
             i.putExtras(b)
             setResult(Activity.RESULT_OK, i)

@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_tabuleiro.*
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import com.example.tetris.models.*
 import kotlin.random.Random
