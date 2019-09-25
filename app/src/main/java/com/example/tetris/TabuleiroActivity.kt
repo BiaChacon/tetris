@@ -20,7 +20,6 @@ class TabuleiroActivity : AppCompatActivity() {
     val COLUNA = 12
 
     var running = true
-    //var game = GameViewModel()
 
     // [ NORMAL | FACIL | DIFICIL ]
     var speed = longArrayOf(250,600,100)
@@ -210,10 +209,10 @@ class TabuleiroActivity : AppCompatActivity() {
                 (game.tabuleiro[p.pB.x][p.pB.y+1] == 0) &&
                 (game.tabuleiro[p.pC.x][p.pC.y+1] == 0) &&
                 (game.tabuleiro[p.pD.x][p.pD.y+1] == 0)) ||
-                (p.pA.y+1 < COLUNA ||
-                 p.pB.y+1 < COLUNA ||
-                 p.pC.y+1 < COLUNA ||
-                 p.pD.y+1 < COLUNA) ){
+                (p.pA.y+1 == COLUNA-1 ||
+                 p.pB.y+1 == COLUNA-1 ||
+                 p.pC.y+1 == COLUNA-1 ||
+                 p.pD.y+1 == COLUNA-1) ){
                 return false
             }
         }catch (e:ArrayIndexOutOfBoundsException){
@@ -327,7 +326,7 @@ class TabuleiroActivity : AppCompatActivity() {
             var b = Bundle()
             b.putString("pontos", pontuacao)
             i.putExtras(b)
-
+            Log.i("ERRO", "entro em perdeu")
             startActivity(i)
             running = false
             finish()
