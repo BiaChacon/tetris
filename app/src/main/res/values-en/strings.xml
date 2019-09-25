@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Tetris</string>
     <string name="configura_s">Configuration</string>
-    <string name="configurar">To set up</string>
+    <string name="configurar">Settings</string>
     <string name="continuar">Continue</string>
     <string name="f_cil">Easy</string>
     <string name="normal">Normal</string>
@@ -12,6 +12,6 @@
     <string name="pr_xima">Next:</string>
     <string name="pontua_o">Points:</string>
     <string name="sair">Exit</string>
-    <string name="novo_record">Novo Record !</string>
+    <string name="novo_record">New Record !</string>
     <string name="record">Record:</string>
 </resources>
