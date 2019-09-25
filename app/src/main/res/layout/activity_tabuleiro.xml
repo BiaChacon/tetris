@@ -47,12 +47,12 @@
             android:layout_marginLeft="50sp"/>
 
         <ImageView
-            android:id="@+id/proximaPeca"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/imageProxima"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5sp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/rosa"
-            android:layout_gravity="left"/>
+            app:srcCompat="@drawable/j" />
 
     </LinearLayout>
 

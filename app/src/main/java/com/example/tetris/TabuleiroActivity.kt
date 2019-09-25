@@ -24,7 +24,7 @@ class TabuleiroActivity : AppCompatActivity() {
     // [ NORMAL | FACIL | DIFICIL ]
     var speed = longArrayOf(250,600,100)
 
-    var p = gerarPeca()
+    var p = gerarPeca(1)
 
     var pontos = 0
     var escolhido = 0
@@ -38,6 +38,9 @@ class TabuleiroActivity : AppCompatActivity() {
     var boardView = Array(LINHA){
         arrayOfNulls<ImageView>(COLUNA)
     }
+
+    var proximaPeca = 2
+    var random = Random
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -156,24 +159,45 @@ class TabuleiroActivity : AppCompatActivity() {
     }
 
     fun newBlock(){
-        p = gerarPeca()
+
+        var newP = proximaPeca
+
+        Log.i("teste","${newP}")
+
+        proximaPeca = random.nextInt(7)
+
+
+        if(proximaPeca == 0)
+            imageProxima.setImageResource(R.drawable.i)
+        else if (proximaPeca == 1)
+            imageProxima.setImageResource(R.drawable.j)
+        else if(proximaPeca == 2)
+            imageProxima.setImageResource(R.drawable.l)
+        else if(proximaPeca == 3)
+            imageProxima.setImageResource(R.drawable.o)
+        else if (proximaPeca == 4)
+            imageProxima.setImageResource(R.drawable.s)
+        else if (proximaPeca == 5)
+            imageProxima.setImageResource(R.drawable.t)
+        else
+            imageProxima.setImageResource(R.drawable.z)
+
+        p = gerarPeca(newP)
     }
 
-    fun gerarPeca():Block{
+    fun gerarPeca(newPeca:Int):Block{
 
-        val random = (1..7).shuffled().first()
-
-        if(random == 1)
+        if(newPeca == 0)
             return Iblock(1,6)
-        else if (random == 2)
+        else if (newPeca == 1)
             return Jblock(2,6)
-        else if(random == 3)
+        else if(newPeca == 2)
             return Lblock(2,6)
-        else if(random == 4)
+        else if(newPeca == 3)
             return Oblock(0,6)
-        else if (random == 5)
+        else if (newPeca ==4)
             return Sblock(1,6)
-        else if (random == 6)
+        else if (newPeca == 5)
             return Tblock(0,6)
         else
             return Zblock(0,6)
