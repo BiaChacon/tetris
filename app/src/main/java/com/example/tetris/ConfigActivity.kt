@@ -16,8 +16,6 @@ class ConfigActivity : AppCompatActivity() {
 
         var b = Bundle()
 
-
-
         saveBt.setOnClickListener {
            if (normalRB.isChecked)
                b.putInt("dificuldade", 0)

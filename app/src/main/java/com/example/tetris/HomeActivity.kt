@@ -40,7 +40,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
             }
             confBt.id->{
                 var i = Intent(this, ConfigActivity::class.java)
-                startActivity(i)
+                startActivityForResult(i,99)
             }
             continuaBt.id->{
                 var i = Intent()
@@ -52,14 +52,14 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         var settings = getSharedPreferences("prefs", Context.MODE_PRIVATE)
         var editor = settings.edit()
         val params = data?.extras
+
         when(resultCode){
             Activity.RESULT_OK->{
-                editor.clear()
                 editor.putInt("dificuldade", params!!.getInt("dificuldade"))
-                //Toast.makeText(this, params!!.getInt("dificuldade"), Toast.LENGTH_SHORT).show()
                 editor.commit()
             }
         }

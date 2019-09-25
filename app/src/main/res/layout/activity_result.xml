@@ -77,6 +77,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/novo_record"
+        android:visibility="gone"
         android:textColor="@color/branco"
         android:fontFamily="@font/orbitron_black"
         android:textSize="20sp"
