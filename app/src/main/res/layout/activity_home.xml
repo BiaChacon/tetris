@@ -8,7 +8,7 @@
     android:layout_gravity="bottom"
     android:background="@color/colorBackground"
     android:orientation="vertical"
-    tools:context=".HomeActivity">
+    tools:context="com.biachacon.tetris.HomeActivity">
 
     <ImageView
         android:id="@+id/imageTetris"

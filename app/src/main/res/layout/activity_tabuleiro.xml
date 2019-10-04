@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center|center_vertical"
     android:orientation="vertical"
-    tools:context=".TabuleiroActivity"
+    tools:context="com.biachacon.tetris.TabuleiroActivity"
     android:background="@color/colorBackground">
 
     <LinearLayout

@@ -1,11 +1,11 @@
-package com.example.tetris.models
+package com.biachacon.tetris.models
 
-class Tblock(x:Int, y:Int):Block(x,y){
+class Zblock(x:Int, y:Int): Block(x,y){
 
     init {
-        pB = Ponto(x, y-1)
-        pC = Ponto(x,y+1)
-        pD = Ponto(x+1,y)
+        pB = Ponto(x, y - 1)
+        pC = Ponto(x + 1, y)
+        pD = Ponto(x + 1, y + 1)
         giro = 1
     }
 
@@ -22,10 +22,10 @@ class Tblock(x:Int, y:Int):Block(x,y){
             pB.x = pA.x+1
             pB.y = pA.y
             //trocar ponto C
-            pC.x = pA.x-1
-            pC.y = pA.y
+            pC.x = pA.x
+            pC.y = pA.y+1
             //trocar ponto D
-            pD.x = pA.x
+            pD.x = pA.x-1
             pD.y = pA.y+1
             //mudar state para horizontal
             state = false
@@ -34,11 +34,11 @@ class Tblock(x:Int, y:Int):Block(x,y){
             pB.x = pA.x
             pB.y = pA.y-1
             //trocar ponto C
-            pC.x = pA.x
-            pC.y = pA.y+1
+            pC.x = pA.x+1
+            pC.y = pA.y
             //trocar ponto D
             pD.x = pA.x+1
-            pD.y = pA.y
+            pD.y = pA.y+1
             //mudar state para vertical
             state = true
         }

@@ -1,12 +1,12 @@
-package com.example.tetris.models
+package com.biachacon.tetris.models
 
-class Zblock(x:Int, y:Int):Block(x,y){
+class Jblock(x:Int, y:Int): Block(x,y){
 
     init {
-        pB = Ponto(x,y-1)
-        pC = Ponto(x+1,y)
-        pD = Ponto(x+1,y+1)
-        giro = 1
+        pB = Ponto(x - 1, y)
+        pC = Ponto(x - 2, y)
+        pD = Ponto(x, y - 1)
+        giro = 2
     }
 
     override fun moveDown() {
@@ -19,26 +19,26 @@ class Zblock(x:Int, y:Int):Block(x,y){
     override fun moveGirar() {
         if (state){
             //trocar ponto B
-            pB.x = pA.x+1
-            pB.y = pA.y
+            pB.x = pA.x
+            pB.y = pA.y+1
             //trocar ponto C
             pC.x = pA.x
-            pC.y = pA.y+1
+            pC.y = pA.y+2
             //trocar ponto D
             pD.x = pA.x-1
-            pD.y = pA.y+1
+            pD.y = pA.y
             //mudar state para horizontal
             state = false
         }else{
             //trocar ponto B
-            pB.x = pA.x
-            pB.y = pA.y-1
+            pB.x = pA.x-1
+            pB.y = pA.y
             //trocar ponto C
-            pC.x = pA.x+1
+            pC.x = pA.x-2
             pC.y = pA.y
             //trocar ponto D
-            pD.x = pA.x+1
-            pD.y = pA.y+1
+            pD.x = pA.x
+            pD.y = pA.y-1
             //mudar state para vertical
             state = true
         }

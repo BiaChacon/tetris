@@ -1,4 +1,4 @@
-package com.example.tetris
+package com.biachacon.tetris
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

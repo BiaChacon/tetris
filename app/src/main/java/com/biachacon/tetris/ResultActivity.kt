@@ -1,4 +1,4 @@
-package com.example.tetris
+package com.biachacon.tetris
 
 import android.content.Context
 import android.content.Intent

@@ -1,11 +1,11 @@
-package com.example.tetris.models
+package com.biachacon.tetris.models
 
-class Sblock(x:Int, y:Int):Block(x,y){
+class Sblock(x:Int, y:Int): Block(x,y){
 
     init {
-        pB = Ponto(x-1,y)
-        pC = Ponto(x-1,y+1)
-        pD = Ponto(x, y-1)
+        pB = Ponto(x - 1, y)
+        pC = Ponto(x - 1, y + 1)
+        pD = Ponto(x, y - 1)
         giro = 1
     }
 

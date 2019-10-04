@@ -1,4 +1,4 @@
-package com.example.tetris.models
+package com.biachacon.tetris.models
 
 import androidx.lifecycle.ViewModel
 

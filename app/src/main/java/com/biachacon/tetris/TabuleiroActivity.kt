@@ -1,4 +1,4 @@
-package com.example.tetris
+package com.biachacon.tetris
 
 import android.app.Activity
 import android.content.Context
@@ -9,9 +9,8 @@ import android.util.Log
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_tabuleiro.*
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
-import com.example.tetris.models.*
+import com.biachacon.tetris.models.*
 import kotlin.random.Random
 
 class TabuleiroActivity : AppCompatActivity() {
@@ -185,22 +184,22 @@ class TabuleiroActivity : AppCompatActivity() {
         p = gerarPeca(newP)
     }
 
-    fun gerarPeca(newPeca:Int):Block{
+    fun gerarPeca(newPeca:Int): Block {
 
         if(newPeca == 0)
-            return Iblock(1,6)
+            return Iblock(1, 6)
         else if (newPeca == 1)
-            return Jblock(2,6)
+            return Jblock(2, 6)
         else if(newPeca == 2)
-            return Lblock(2,6)
+            return Lblock(2, 6)
         else if(newPeca == 3)
-            return Oblock(0,6)
+            return Oblock(0, 6)
         else if (newPeca ==4)
-            return Sblock(1,6)
+            return Sblock(1, 6)
         else if (newPeca == 5)
-            return Tblock(0,6)
+            return Tblock(0, 6)
         else
-            return Zblock(0,6)
+            return Zblock(0, 6)
 
     }
 
@@ -346,7 +345,7 @@ class TabuleiroActivity : AppCompatActivity() {
 
         if(bateuPeca() && bateuCima()){
 
-            var i = Intent(this,ResultActivity::class.java)
+            var i = Intent(this, ResultActivity::class.java)
             var pontuacao = pontAtualText.text.toString()
             var b = Bundle()
             b.putString("pontos", pontuacao)

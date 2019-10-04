@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ConfigActivity"
+    tools:context="com.biachacon.tetris.ConfigActivity"
     android:background="@color/colorBackground">
 
     <TextView

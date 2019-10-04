@@ -1,4 +1,4 @@
-package com.example.tetris
+package com.biachacon.tetris
 
 import org.junit.Test
 
